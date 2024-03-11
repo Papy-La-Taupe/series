@@ -9,7 +9,7 @@ class MainController extends AbstractController
 {
     #[Route(path: '/', name: 'main_home')]
     public function home(){
-        echo "coucou";
+        return $this->render('main/home.html.twig');
         die();
     }
 

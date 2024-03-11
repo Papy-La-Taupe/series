@@ -15,7 +15,7 @@ class MainController extends AbstractController
 
     #[Route(path: '/test', name: 'main_test')]
     public function test(){
-        echo "testounet";
+        return $this->render('main/test.html.twig');
         die();
     }
 }

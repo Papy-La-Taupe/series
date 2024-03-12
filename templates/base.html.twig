@@ -10,12 +10,7 @@
 <body>
     <header>
         <h1>Series</h1>
-        <nav>
-            <ul>
-                <li><a href="#" title="Home">Home</a></li>
-                <li><a href="#" title="Test">Test</a></li>
-            </ul>
-        </nav>
+        {% include('inc/nav.html.twig') %}
     </header>
     <main>
         {% block body %}{% endblock %}

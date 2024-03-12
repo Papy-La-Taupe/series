@@ -4,7 +4,7 @@ html{
     box-sizing: border-box;
 }
 body{
-    background:linear-gradient(darkblue 30%, cornflowerblue) ;
+    background:linear-gradient(darkslateblue 30%, cornflowerblue) ;
     height:100vh;
     font-family: Ubuntu, sans-serif;
 }

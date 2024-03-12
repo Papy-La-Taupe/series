@@ -1,3 +1,14 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
-    background-color: aliceblue;
+    background:linear-gradient(darkblue 30%, cornflowerblue) ;
+    height:100vh;
+    font-family: Ubuntu, sans-serif;
+}
+
+.logo{
+    height:1em;
 }

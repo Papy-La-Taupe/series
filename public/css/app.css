@@ -6,7 +6,7 @@ html{
 body{
     background:linear-gradient(darkslateblue 30%, cornflowerblue) ;
     height:100vh;
-    font-family: Ubuntu, sans-serif;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .logo{

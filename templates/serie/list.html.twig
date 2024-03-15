@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section>
+    <section class="series-list">
         {% for serie in series %}
         <article>
             {# ici on va chercher le détail d'une série si on clique. #}
             <a href="{{ path('serie_details',{'id': serie.id}) }}" title="View serie's details">
                 {# ici le ~ sert à concaténer la valeur.
                 On a donc un asset personnalisé qi va cherche le "poster" => name de chaque série#}
-                <img src="{{ asset('img/poster/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+                <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
             </a>
         </article>
         {% endfor %}

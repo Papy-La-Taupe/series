@@ -21,28 +21,38 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    //    /**
-    //     * @return Serie[] Returns an array of Serie objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findBestSeries()
+    {
+        //en DQL
+        //$entityManager = $this->getEntityManager();
+        /*$dql = "
+            SELECT alias
+            FROM App\Entity\Serie alias
+            WHERE alias.popularity > 100
+            AND alias.vote > 8
+            ORDER BY alias.popularity DESC
+            ";
+        */
+        //$query = $entityManager->createQuery($dql);
+        //$query->setMaxResults(20);
+        //$result=  $query->getResult();
 
-    //    public function findOneBySomeField($value): ?Serie
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        //version QueryBuilder
+        $queryBuilder = $this->createQueryBuilder('alias');
+        $queryBuilder
+            ->andWhere('alias.popularity > 100')
+            ->andWhere('alias.vote > 8');
+        $queryBuilder->addOrderBy('alias.popularity', 'DESC');
+        $query = $queryBuilder->getQuery();
+        $query->setMaxResults(20);
+        $result=  $query->getResult();
+
+
+        return $result;
+    }
+
+
+
+
+
 }

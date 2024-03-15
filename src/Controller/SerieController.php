@@ -17,7 +17,7 @@ class SerieController extends AbstractController
     public function list(SerieRepository $serieRepository): Response
     {
         //mieux que simplement findAll,permet de sur-trier
-        $series = $serieRepository->findBy(['popularity'=>'DESC', 'vote' =>'DESC'], 30);
+        $series = $serieRepository->findBestSeries();
 
         return $this->render('serie/list.html.twig', [
             "series"=> $series,

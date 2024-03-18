@@ -64,4 +64,14 @@ nav li {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
+label{
+    display:block;
+}
 
+input,
+textarea,
+select{
+    margin: 1em;
+    width:150px;
+    max-width: 50%;
+}

@@ -34,7 +34,7 @@ class SerieType extends AbstractType
             ->add('genres')
             ->add('firstAirDate', DateType::class, [
                 'html5' => true,
-                'widget' => 'single-text',
+                'widget' => 'single_text',
             ])
             ->add('lastAirDate', null, [
                 'widget' => 'single_text',

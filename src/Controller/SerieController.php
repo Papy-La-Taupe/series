@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -35,12 +35,27 @@ class SerieController extends AbstractController
         ]);
     }
     #[Route('/create', name: 'create')]
-    public function create(): Response
-    {
+    public function create(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response{
         $serie = new Serie();
+        //je set la date de création ici car elle n'est pas dans le formulaire mais est required
+        $serie->setDateCreated(new \DateTime());
         $serieForm = $this ->createForm(SerieType::class, $serie);
 
-        //todo traiter le formulaire
+        $serieForm->handleRequest($request);
+        if($serieForm->isSubmitted()){
+
+            $entityManager->persist($serie);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Série ajoutée');
+            //je revens vers serie-details, et je dois fournir un id
+            //heureusement, dès que j'ai flush, l'entité $serie a été mis a jour avec son id
+            return $this->redirectToRoute('serie_details', [
+                'id' =>$serie->getId()]);
+        }
 
         return $this->render('serie/create.html.twig', [
             'serieForm' => $serieForm->createView()

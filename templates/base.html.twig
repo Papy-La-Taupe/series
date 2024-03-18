@@ -18,6 +18,15 @@
         <h1><a href="{{ path('main_home') }}"><img class="logo" src="{{ asset('img/happycat.png') }}" alt="Series!"></a> Series!</h1>
         {% include('inc/nav.html.twig') %}
     </header>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <main>
         {% block body %}{% endblock %}
     </main>

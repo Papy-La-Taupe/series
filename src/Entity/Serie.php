@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SerieRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SerieRepository::class)]
 class Serie
@@ -14,12 +15,16 @@ class Serie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:'Please provide a title for the serie')]
+    #[Assert\Length(min:2, max:255)]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\Length(min:30)]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $synopsis = null;
 
+    #[Assert\Choice(choices:["Cancelled", "Returning", "Ended"])]
     #[ORM\Column(length: 50)]
     private ?string $status = null;
 
@@ -35,6 +40,7 @@ class Serie
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $firstAirDate = null;
 
+    #[Assert\GreaterThanOrEqual(propertyPath:"firstAirDate")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $lastAirDate = null;
 
